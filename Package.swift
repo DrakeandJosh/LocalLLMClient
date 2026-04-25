@@ -146,10 +146,11 @@ packageTargets.append(contentsOf: [
         dependencies: ["LocalLLMClientLlamaFramework"],
         exclude: ["exclude"],
         cSettings: [
-            .unsafeFlags(["-w"]),
+            .unsafeFlags(["-w", "-x", "c++"]),
             .headerSearchPath(".")
         ],
         cxxSettings: [
+            .unsafeFlags(["-x", "c++"]),
             .headerSearchPath(".")
         ],
         swiftSettings: [
