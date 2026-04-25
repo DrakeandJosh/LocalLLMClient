@@ -94,7 +94,6 @@ packageTargets.append(contentsOf: [
         name: "LocalLLMCLI",
         dependencies: [
             "LocalLLMClientLlama",
-            "LocalLLMClientMLX",
             "LocalLLMClientFoundationModels",
             .product(name: "ArgumentParser", package: "swift-argument-parser"),
         ],
