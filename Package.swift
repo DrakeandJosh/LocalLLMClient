@@ -15,7 +15,6 @@ var packageDependencies: [Package.Dependency] = [
 
 #if os(iOS) || os(macOS)
 packageDependencies.append(contentsOf: [
-    .package(url: "https://github.com/ml-explore/mlx-swift-lm", branch: "main"),
     .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.0")
 ])
 #endif
@@ -29,7 +28,6 @@ var packageProducts: [Product] = [
 #if os(iOS) || os(macOS)
 packageProducts.append(contentsOf: [
     .library(name: "LocalLLMClientLlama", targets: ["LocalLLMClientLlama"]),
-    .library(name: "LocalLLMClientMLX", targets: ["LocalLLMClientMLX"]),
     .library(name: "LocalLLMClientFoundationModels", targets: ["LocalLLMClientFoundationModels"]),
 ])
 #elseif os(Linux)
@@ -130,18 +128,6 @@ packageTargets.append(contentsOf: [
     ),
 
     .target(
-        name: "LocalLLMClientMLX",
-        dependencies: [
-            "LocalLLMClientCore",
-            .product(name: "MLXLLM", package: "mlx-swift-lm"),
-            .product(name: "MLXVLM", package: "mlx-swift-lm"),
-        ],
-    ),
-    .testTarget(
-        name: "LocalLLMClientMLXTests",
-        dependencies: ["LocalLLMClientMLX", "LocalLLMClientTestUtilities"]
-    ),
-    .target(
         name: "LocalLLMClientFoundationModels",
         dependencies: ["LocalLLMClient"]
     ),
@@ -175,8 +161,7 @@ packageTargets.append(contentsOf: [
     .testTarget(
         name: "LocalLLMClientUtilityTests",
         dependencies: [
-            "LocalLLMClientUtility",
-            .product(name: "MLXLMCommon", package: "mlx-swift-lm")
+            "LocalLLMClientUtility"
         ]
     )
 ])
